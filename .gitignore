@@ -263,4 +263,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.vscode
+
 # End of https://www.toptal.com/developers/gitignore/api/java,scala,metals,bloop,sbt,visualstudiocode,macos,windows,linux,intellij,mill
