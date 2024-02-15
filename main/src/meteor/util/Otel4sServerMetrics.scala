@@ -13,7 +13,7 @@ import org.typelevel.otel4s.Attribute
 import cats.effect.kernel.Clock
 import java.util.concurrent.TimeUnit
 
-object Otel4sMetrics {
+object Otel4sServerMetrics {
   def apply[F[_], E](prefix: String = "http4s")(
       app: HttpApp[F]
   )(using
@@ -64,11 +64,11 @@ object Otel4sMetrics {
                 )
               )
           _ <- requestsCounter.inc(
-            attributes: _*
+            attributes*
           )
           _ <- requestDurationsHistogram.record(
             (endTime - startTime).toUnit(TimeUnit.MILLISECONDS),
-            attributes: _*
+            attributes*
           )
         } yield ()
       )

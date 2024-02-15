@@ -14,10 +14,11 @@ object V {
   val openTelemetry = "1.35.0"
   val scribe = "3.13.0"
   val jsoniter = "2.28.2"
+  val cache2k = "2.6.1.Final"
 }
 
 object main extends ScalaModule {
-  def scalaVersion = "3.3.1"
+  def scalaVersion = "3.4.0"
 
   def repositoriesTask = T.task {
     super.repositoriesTask() ++ additionalRepositories
@@ -32,12 +33,14 @@ object main extends ScalaModule {
     ivy"com.outr::scribe:${V.scribe}",
     ivy"com.outr::scribe-slf4j2:${V.scribe}",
     ivy"com.outr::scribe-cats:${V.scribe}",
-    ivy"com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-core:${V.jsoniter}"
+    ivy"com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-core:${V.jsoniter}",
+    ivy"org.cache2k:cache2k-api:${V.cache2k}"
   )
 
   def runIvyDeps = Agg(
     ivy"io.opentelemetry:opentelemetry-exporter-otlp:${V.openTelemetry}",
-    ivy"io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:${V.openTelemetry}"
+    ivy"io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:${V.openTelemetry}",
+    ivy"org.cache2k:cache2k-core:${V.cache2k}"
   )
 
   def compileIvyDeps = Agg(

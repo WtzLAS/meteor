@@ -17,7 +17,7 @@ import scribe.cats.effect
 import org.http4s.server.middleware.Metrics
 import cats.effect.std.Console
 import concurrent.duration.DurationInt
-import meteor.util.Otel4sMetrics
+import meteor.util.Otel4sServerMetrics
 
 object Main extends IOApp {
   val helloWorldService = HttpRoutes
@@ -34,7 +34,7 @@ object Main extends IOApp {
       .withHost(ipv4"0.0.0.0")
       .withPort(port"8011")
       .withHttpApp(
-        Otel4sMetrics(prefix = "meteor")(helloWorldService.orNotFound)
+        Otel4sServerMetrics(prefix = "meteor")(helloWorldService.orNotFound)
       )
       .build
       .useForever
